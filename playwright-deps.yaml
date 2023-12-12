@@ -1,0 +1,20 @@
+# Install Playwright system dependencies
+
+apiVersion: buildpack/v1alpha2
+kind: Buildpack
+metadata:
+  name: playwright-deps
+  annotations:
+    description: "Installs Playwright system dependencies"
+
+spec:
+  order:
+    group: 0
+    build: 1
+
+  lifecycle:
+    build:
+      # Install Playwright system dependencies
+      - command: "npx playwright install-deps"
+        when:
+          - before: compile
